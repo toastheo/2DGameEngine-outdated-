@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Scene.h"
 
 class GameEngine
 {
@@ -9,7 +10,9 @@ public:
 
 	void update();
 	bool isRunning();
+
 private:
-	sf::RenderWindow window;
+	std::shared_ptr<sf::RenderWindow> window;
+	Scene gameScene;
 };
 
