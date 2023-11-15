@@ -24,6 +24,9 @@ x86/
 *.VC.db
 *.VC.VC.opendb
 
+#SFML data
+SFML/bin/
+
 # other
 .DS_Store
 Thumbs.db
