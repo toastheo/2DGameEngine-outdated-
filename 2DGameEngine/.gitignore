@@ -1,0 +1,29 @@
+# ignore build data
+Debug/
+Release/
+x64/
+x86/
+*.exe
+*.dll
+*.lib
+*.obj
+*.log
+*.tlog
+*.idb
+*.pch
+*.ilk
+*.res
+
+# Visual Studio data
+.vs/
+*.user
+*.aps
+*.sdf
+*.opensdf
+*.suo
+*.VC.db
+*.VC.VC.opendb
+
+# other
+.DS_Store
+Thumbs.db
