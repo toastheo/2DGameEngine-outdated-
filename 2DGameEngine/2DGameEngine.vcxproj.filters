@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Quelldateien\Graphics">
+      <UniqueIdentifier>{1c2fffc3-9594-4d16-82c0-1a44ef265e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Graphics">
+      <UniqueIdentifier>{baf8212d-8368-43b4-9279-172d2850c248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Time">
+      <UniqueIdentifier>{ff23f223-5033-41f7-b551-a04fae9bba97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Time">
+      <UniqueIdentifier>{02860383-c096-402e-8807-bb1b61d066a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -25,18 +37,24 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>Quelldateien\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
+      <Filter>Headerdateien\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Headerdateien\Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

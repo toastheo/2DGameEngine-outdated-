@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "GameTime.h"
 
 /**
 * \class GameObject
@@ -40,11 +41,15 @@ public:
 	
 	/**
 	* \brief Sets the texture of the GameObject.
+	* NOTE: If you change smoothing or repeat, you modify the texture
+	* not the gameObject, so it will apply for all objects that are
+	* using this Texture.
+	* 
 	* \param texture Shared pointer to the texture.
-	* \param smoothing Apply smoothing to the texture (default is true)
+	* \param smoothing Apply smoothing to the texture (default is false)
 	* \param repeat Repeat the texture (default is false)
 	*/
-	void setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing = true, bool repeat = false);
+	void setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing = false, bool repeat = false);
 
 	/**
 	* \brief Sets the origin position of the GameObject
@@ -68,7 +73,7 @@ public:
 	* \brief Renders the GameObject.
 	* \param target The render target.
 	*/
-	void render(std::shared_ptr<sf::RenderWindow> target);
+	void render(std::shared_ptr<sf::RenderWindow> targetWin);
 
 	/** \brief Updates the GameObject. */
 	void update();
@@ -84,22 +89,23 @@ public:
 	virtual void behaviour() {};
 
 	// Member variables
-	sf::Vector2f position;			///< Position of the GameObject.
-	float rotationAngle;			///< Rotation angle of the GameObject.
-	sf::Vector2f scale;				///< Scale of the GameObject.
-	sf::Color color;				///< Color of the GameObject.
-	sf::Vector2f motionVector;		///< Motion vector for the movement.
-	float rotationVector;			///< Rotation vector for the rotation.
-	sf::Vector2f scalingVector;		///< Scaling vector for scaling.
-	sf::Vector2f origin;			///< Origin point of the GameObject.
+	sf::Vector2f position;					///< Position of the GameObject.
+	float rotationAngle;					///< Rotation angle of the GameObject.
+	sf::Vector2f scale;						///< Scale of the GameObject.
+	sf::Color color;						///< Color of the GameObject.
+	sf::Vector2f motionVector;				///< Motion vector for the movement.
+	float rotationVector;					///< Rotation vector for the rotation.
+	sf::Vector2f scalingVector;				///< Scaling vector for scaling.
+	sf::Vector2f origin;					///< Origin point of the GameObject.
 
-	bool isVisible;	///< Visibility state of the GameObject.
-	bool isActive;	///< Active state of the GameObject.
+	bool isVisible;							///< Visibility state of the GameObject.
+	bool isActive;							///< Active state of the GameObject.
 
 private:
 	sf::Vector2f size;						///< Size of the GameObject.
 	std::shared_ptr<sf::Texture> texture;	///< Texture of the GameObject.
 	sf::Sprite sprite;						///< Sprite used to render the GameObject.
 
+	GameTime time;							///< Tracks time to calculate DeltaTime.
 	bool loopStarted = false;				///< Tracks if the GameObject loop has started.
 };

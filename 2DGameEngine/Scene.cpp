@@ -2,7 +2,7 @@
 
 Scene::Scene()
 {
-	target = nullptr;
+	targetWin = nullptr;
 }
 
 Scene::~Scene()
@@ -12,20 +12,10 @@ Scene::~Scene()
 
 void Scene::load(std::shared_ptr<sf::RenderWindow> target)
 {
-	this->target = target;
+	this->targetWin = target;
 
 	update();
 	render();
 
-	this->target = nullptr;
-}
-
-void Scene::update()
-{
-	
-}
-
-void Scene::render()
-{
-	
+	this->targetWin = nullptr;
 }

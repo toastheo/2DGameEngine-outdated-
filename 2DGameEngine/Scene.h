@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "GameObject.h"
+#include "GameTime.h"
 
 class Scene
 {
@@ -9,12 +10,13 @@ public:
 	Scene();
 	~Scene();
 
-	void load(std::shared_ptr<sf::RenderWindow> target);
+	void load(std::shared_ptr<sf::RenderWindow> targetWin);
 
 private:
-	void update();
-	void render();
+	virtual void init() = 0;
+	virtual void update() = 0;
+	virtual void render() = 0;
 
-	std::shared_ptr<sf::RenderWindow> target;
+	std::shared_ptr<sf::RenderWindow> targetWin;
 };
 

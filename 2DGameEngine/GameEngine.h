@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <thread>
+#include <mutex>
 #include "Scene.h"
 
 class GameEngine
 {
 public:
-	GameEngine();
+	GameEngine(bool verticalSyncEnabled = false);
 	~GameEngine();
 
 	void update();
@@ -13,6 +15,10 @@ public:
 
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	Scene gameScene;
+	std::thread thread;
+	std::atomic<bool> running = true;
+	bool verticalSync;
+
+	void renderThread();
 };
 

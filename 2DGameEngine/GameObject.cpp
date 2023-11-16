@@ -83,9 +83,12 @@ void GameObject::render(std::shared_ptr<sf::RenderWindow> target)
 
 void GameObject::update()
 {
+	float elapsedTime = time.getDeltaTime();
+
 	if (!loopStarted)
 	{
 		start();
+		elapsedTime = 0;
 		loopStarted = true;
 	}
 
@@ -100,19 +103,19 @@ void GameObject::update()
 
 	if (motionVector != sf::Vector2f(0.f, 0.f)) 
 	{
-		sprite.move(motionVector);
+		sprite.move(motionVector.x * elapsedTime, motionVector.y * elapsedTime);
 		position = sprite.getPosition();
 	}
 
 	if (rotationVector != 0.f)
 	{
-		sprite.rotate(rotationVector);
+		sprite.rotate(rotationVector * elapsedTime);
 		rotationAngle = sprite.getRotation();
 	}
 
 	if (scalingVector != sf::Vector2f(0.f, 0.f))
 	{
-		sprite.scale(scalingVector);
+		sprite.scale(scalingVector * elapsedTime);
 		scale = sprite.getScale();
 	}
 
