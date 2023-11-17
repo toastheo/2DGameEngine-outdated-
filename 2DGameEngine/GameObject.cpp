@@ -1,26 +1,9 @@
 #include "GameObject.h"
 
 GameObject::GameObject(sf::Vector2f position, float rotationAngle, sf::Vector2f scale, bool isVisible, bool isActive)
+	: BaseObject(position, rotationAngle, scale, isVisible, isActive)
 {
 	texture = std::make_shared<sf::Texture>();
-
-	this->position = position;
-	this->rotationAngle = rotationAngle;
-	this->scale = scale;
-	this->isVisible = isVisible;
-	this->isActive = isActive;
-
-	size = sf::Vector2f(0, 0);
-	color = sf::Color::White;
-	origin = sf::Vector2f(0, 0);
-	motionVector = sf::Vector2f(0.f, 0.f);
-	rotationVector = 0.f;
-	scalingVector = sf::Vector2f(0.f, 0.f);
-}
-
-GameObject::~GameObject()
-{
-	// not necessary
 }
 
 void GameObject::setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing, bool repeat)
@@ -70,15 +53,10 @@ void GameObject::setOrigin(OriginPos pos)
 	origin = sprite.getOrigin();
 }
 
-sf::Vector2f GameObject::getSize()
-{
-	return size;
-}
-
-void GameObject::render(std::shared_ptr<sf::RenderWindow> target)
+const void GameObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
-		target->draw(sprite);
+		targetWin->draw(sprite);
 }
 
 void GameObject::update()

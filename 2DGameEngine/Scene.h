@@ -12,11 +12,12 @@ public:
 
 	void load(std::shared_ptr<sf::RenderWindow> targetWin);
 
-private:
+protected:
 	virtual void init() = 0;
 	virtual void update() = 0;
 	virtual void render() = 0;
 
 	std::shared_ptr<sf::RenderWindow> targetWin;
+	bool startedSceneLoop = false;
 };
 

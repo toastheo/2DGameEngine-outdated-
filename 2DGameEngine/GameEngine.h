@@ -3,6 +3,7 @@
 #include <thread>
 #include <mutex>
 #include "Scene.h"
+#include "TestSzene.h"
 
 class GameEngine
 {
@@ -18,7 +19,10 @@ private:
 	std::thread thread;
 	std::atomic<bool> running = true;
 	bool verticalSync;
+	int antialiasingLevel = 8;
 
 	void renderThread();
+
+	TestSzene testSzene;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "GameTime.h"
+#include "BaseObject.h"
 
 /**
 * \class GameObject
@@ -10,7 +10,7 @@
 * including position, rotation, scaling, visiblilty and active state.
 * It servers as a base class for more specific game objects.
 */
-class GameObject
+class GameObject : public BaseObject
 {
 public:
 	/**
@@ -22,22 +22,6 @@ public:
 	* \param isActive Initial active state (default is true).
 	*/
 	GameObject(sf::Vector2f position = sf::Vector2f(0, 0), float rotationAngle = 0.0f, sf::Vector2f scale = sf::Vector2f(1, 1), bool isVisible = true, bool isActive = true);
-
-	/** \brief Destructor for GameObject. */
-	~GameObject();
-
-	/**
-	* \enum OriginPos
-	* \brief Represents the origin position for the GameObject.
-	*/
-	enum class OriginPos
-	{
-		UpLeft,			///< Origin at the upper left corner.
-		UpRight,		///< Origin at the upper right corner.
-		DownLeft,		///< Origin at the lower right corner.
-		DownRight,		///< Origin at the lower right corner.
-		Center			///< Origin at the center.
-	};
 	
 	/**
 	* \brief Sets the texture of the GameObject.
@@ -61,51 +45,17 @@ public:
 	* \brief Sets the origin position of the GameObject.
 	* \param pos The origin position to set.
 	*/
-	void setOrigin(OriginPos pos);
-
-	/**
-	* \brief Retrieves the size of the GameObject.
-	* \return The size of the GameObject as an sf::Vector2f.
-	*/
-	sf::Vector2f getSize();
+	virtual void setOrigin(OriginPos pos) override;
 
 	/**
 	* \brief Renders the GameObject.
 	* \param target The render target.
 	*/
-	void render(std::shared_ptr<sf::RenderWindow> targetWin);
+	const virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
 
 	/** \brief Updates the GameObject. */
-	void update();
-	
-	/**
-	* \brief Method for additional initializations in derived classes.
-	*/
-	virtual void start() {};
-
-	/**
-	* \brief Defines the behaviour of the GameObject.
-	*/
-	virtual void behaviour() {};
-
-	// Member variables
-	sf::Vector2f position;					///< Position of the GameObject.
-	float rotationAngle;					///< Rotation angle of the GameObject.
-	sf::Vector2f scale;						///< Scale of the GameObject.
-	sf::Color color;						///< Color of the GameObject.
-	sf::Vector2f motionVector;				///< Motion vector for the movement.
-	float rotationVector;					///< Rotation vector for the rotation.
-	sf::Vector2f scalingVector;				///< Scaling vector for scaling.
-	sf::Vector2f origin;					///< Origin point of the GameObject.
-
-	bool isVisible;							///< Visibility state of the GameObject.
-	bool isActive;							///< Active state of the GameObject.
-
-private:
-	sf::Vector2f size;						///< Size of the GameObject.
+	virtual void update() override;
+protected:
 	std::shared_ptr<sf::Texture> texture;	///< Texture of the GameObject.
 	sf::Sprite sprite;						///< Sprite used to render the GameObject.
-
-	GameTime time;							///< Tracks time to calculate DeltaTime.
-	bool loopStarted = false;				///< Tracks if the GameObject loop has started.
 };

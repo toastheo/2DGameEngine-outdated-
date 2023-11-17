@@ -4,7 +4,10 @@ GameEngine::GameEngine(bool verticalSync)
 {
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	window = std::make_shared<sf::RenderWindow>();
-	window->create(sf::VideoMode(1600, 900, desktop.bitsPerPixel), "2D Game Engine", sf::Style::Default);
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = antialiasingLevel;
+
+	window->create(sf::VideoMode(1600, 900, desktop.bitsPerPixel), "2D Game Engine", sf::Style::Default, settings);
 	window->setVerticalSyncEnabled(verticalSync);
 
 	thread = std::thread(&GameEngine::renderThread, this);
@@ -12,7 +15,10 @@ GameEngine::GameEngine(bool verticalSync)
 
 GameEngine::~GameEngine()
 {
-	// not necessary
+	if (thread.joinable())
+	{
+		thread.join();
+	}
 }
 
 void GameEngine::update()
@@ -48,6 +54,7 @@ void GameEngine::renderThread()
 	while (running && window->isOpen())
 	{
 		window->clear();
+		testSzene.load(window);
 		window->display();
 	}
 }

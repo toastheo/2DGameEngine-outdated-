@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\Time">
       <UniqueIdentifier>{02860383-c096-402e-8807-bb1b61d066a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\System">
+      <UniqueIdentifier>{2df3b0b5-5c4b-495c-8969-32785decf562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\System">
+      <UniqueIdentifier>{74aa02cd-8da1-4bff-a31f-9fac56ac511e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,28 +39,52 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Quelldateien\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Quelldateien\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Quelldateien\System</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSzene.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Quelldateien\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Quelldateien\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleShapeObject.cpp">
+      <Filter>Quelldateien\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Headerdateien\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Headerdateien\System</Filter>
+    </ClInclude>
     <ClInclude Include="GameTime.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Time</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h">
-      <Filter>Headerdateien\Time</Filter>
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSzene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Headerdateien\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Headerdateien\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleShapeObject.h">
+      <Filter>Headerdateien\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
