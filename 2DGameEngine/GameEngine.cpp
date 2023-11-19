@@ -23,6 +23,13 @@ GameEngine::~GameEngine()
 
 void GameEngine::update()
 {
+	if (!scenePtr)
+	{
+		std::cout << "Scene Pointer is empty. Make sure to load a scene before starting the Game Engine.\nClosing window." << std::endl;
+		window->close();
+		return;
+	}
+
 	window->setActive(false);
 
 	sf::Event event;
@@ -49,12 +56,15 @@ bool GameEngine::isRunning()
 
 void GameEngine::renderThread()
 {
+	if (!scenePtr)
+		return;
+
 	window->setActive(true);
 
 	while (running && window->isOpen())
 	{
 		window->clear();
-		testSzene.load(window);
+		scenePtr->load(window);
 		window->display();
 	}
 }

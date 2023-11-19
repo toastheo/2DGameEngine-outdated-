@@ -14,6 +14,8 @@ public:
 	void update();
 	bool isRunning();
 
+	std::shared_ptr<Scene> scenePtr;
+
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::thread thread;
@@ -22,7 +24,5 @@ private:
 	int antialiasingLevel = 8;
 
 	void renderThread();
-
-	TestSzene testSzene;
 };
 

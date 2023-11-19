@@ -12,14 +12,21 @@ Scene::~Scene()
 
 void Scene::load(std::shared_ptr<sf::RenderWindow> target)
 {
-	if (!startedSceneLoop)
+	try
 	{
-		startedSceneLoop = true;
-		init();
+		if (!startedSceneLoop)
+		{
+			startedSceneLoop = true;
+			init();
+		}
+
+		this->targetWin = target;
+
+		update();
+		render();
 	}
-
-	this->targetWin = target;
-
-	update();
-	render();
+	catch (...)
+	{
+		std::cout << "Error trying to load the scene." << std::endl;
+	}
 }

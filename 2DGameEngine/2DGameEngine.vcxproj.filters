@@ -36,9 +36,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteObject.cpp">
       <Filter>Quelldateien\Graphics</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
     <ClCompile Include="BlueChicken.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Quelldateien\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpriteObject.h">
@@ -73,9 +73,6 @@
     </ClInclude>
     <ClInclude Include="GameTime.h">
       <Filter>Headerdateien\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="TestSzene.h">
       <Filter>Headerdateien</Filter>
@@ -91,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="BlueChicken.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Headerdateien\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
