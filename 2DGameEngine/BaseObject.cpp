@@ -16,7 +16,7 @@ BaseObject::BaseObject(sf::Vector2f position, float rotationAngle, sf::Vector2f 
 	scalingVector = sf::Vector2f(0.f, 0.f);
 }
 
-sf::Vector2f BaseObject::getSize()
+const sf::Vector2f BaseObject::getSize() const
 {
 	return size;
 }

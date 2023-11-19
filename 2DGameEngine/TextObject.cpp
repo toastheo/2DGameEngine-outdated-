@@ -62,27 +62,25 @@ void TextObject::setOrigin(OriginPos pos)
 	switch (pos)
 	{
 	case OriginPos::UpLeft:
-		text.setOrigin(0, 0);
+		origin = sf::Vector2f(0, 0);
 		break;
 
 	case OriginPos::UpRight:
-		text.setOrigin(size.x, 0);
+		origin = sf::Vector2f(size.x, 0);
 		break;
 
 	case OriginPos::DownLeft:
-		text.setOrigin(0, size.y);
+		origin = sf::Vector2f(0, size.y);
 		break;
 
 	case OriginPos::DownRight:
-		text.setOrigin(size);
+		origin = sf::Vector2f(size);
 		break;
 
 	case OriginPos::Center:
-		text.setOrigin(size.x / 2, size.y / 2);
+		origin = sf::Vector2f(size.x / 2, size.y / 2);
 		break;
 	}
-
-	origin = text.getOrigin();
 }
 
 void TextObject::setFont(std::shared_ptr<sf::Font> font)

@@ -136,8 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="BlueChicken.cpp" />
     <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -147,8 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="BlueChicken.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="SpriteObject.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="CircleShapeObject.h" />

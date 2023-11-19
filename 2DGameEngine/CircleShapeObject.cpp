@@ -82,27 +82,25 @@ void CircleShapeObject::setOrigin(OriginPos pos)
 	switch (pos)
 	{
 	case OriginPos::UpLeft:
-		shape.setOrigin(0, 0);
+		origin = sf::Vector2f(0, 0);
 		break;
 
 	case OriginPos::UpRight:
-		shape.setOrigin(size.x, 0);
+		origin = sf::Vector2f(size.x, 0);
 		break;
 
 	case OriginPos::DownLeft:
-		shape.setOrigin(0, size.y);
+		origin = sf::Vector2f(0, size.y);
 		break;
 
 	case OriginPos::DownRight:
-		shape.setOrigin(size);
+		origin = sf::Vector2f(size);
 		break;
 
 	case OriginPos::Center:
-		shape.setOrigin(size.x / 2, size.y / 2);
+		origin = sf::Vector2f(size.x / 2, size.y / 2);
 		break;
 	}
-
-	origin = shape.getOrigin();
 }
 
 void CircleShapeObject::defineShape(float radius, unsigned int numberOfPoints)

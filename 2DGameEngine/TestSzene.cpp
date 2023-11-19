@@ -13,7 +13,6 @@ void TestSzene::init()
 	blue_chicken.setTexture(blue_chicken_texture);
 	blue_chicken.scale = sf::Vector2f(10.f, 10.f);
 	blue_chicken.setTextureRect(sf::IntRect(0, 0, blue_chicken.getSize().x / 5.f, blue_chicken.getSize().y));
-	blue_chicken.motionVector = sf::Vector2f(50.f, 0);
 	blue_chicken.position.y += 50.f;
 
 	// test textobject
@@ -69,7 +68,6 @@ void TestSzene::update()
 
 	blue_chicken.update();
 	TimeDisplay.update();
-
 	circle.update();
 	triangle.update();
 	square.update();
@@ -77,7 +75,7 @@ void TestSzene::update()
 	sides12.update();
 }
 
-void TestSzene::render()
+void TestSzene::render() const
 {
 	blue_chicken.render(targetWin);
 	TimeDisplay.render(targetWin);

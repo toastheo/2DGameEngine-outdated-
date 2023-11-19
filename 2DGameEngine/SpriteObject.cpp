@@ -1,12 +1,12 @@
-#include "GameObject.h"
+#include "SpriteObject.h"
 
-GameObject::GameObject(sf::Vector2f position, float rotationAngle, sf::Vector2f scale, bool isVisible, bool isActive)
+SpriteObject::SpriteObject(sf::Vector2f position, float rotationAngle, sf::Vector2f scale, bool isVisible, bool isActive)
 	: BaseObject(position, rotationAngle, scale, isVisible, isActive)
 {
 	texture = std::make_shared<sf::Texture>();
 }
 
-void GameObject::setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing, bool repeat)
+void SpriteObject::setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing, bool repeat)
 {
 	this->texture = texture;
 
@@ -20,46 +20,56 @@ void GameObject::setTexture(std::shared_ptr<sf::Texture> texture, bool smoothing
 	size = sprite.getLocalBounds().getSize();
 }
 
-void GameObject::setTextureRect(sf::IntRect textureRect)
+void SpriteObject::setTextureRect(sf::IntRect textureRect)
 {
 	sprite.setTextureRect(textureRect);
 }
 
-void GameObject::setOrigin(OriginPos pos)
+void SpriteObject::flipX()
+{
+	scale = sf::Vector2f(-scale.x, scale.y);
+	position = sf::Vector2f(position.x + sprite.getLocalBounds().width * -scale.x, position.y);
+}
+
+void SpriteObject::flipY()
+{
+	scale = sf::Vector2f(scale.x, -scale.y);
+	position = sf::Vector2f(position.x, position.y + sprite.getLocalBounds().height * -scale.y);
+}
+
+void SpriteObject::setOrigin(OriginPos pos)
 {
 	switch (pos) 
 	{
 	case OriginPos::UpLeft:
-		sprite.setOrigin(0, 0);
+		origin = sf::Vector2f(0, 0);
 		break;
 
 	case OriginPos::UpRight:
-		sprite.setOrigin(size.x, 0);
+		origin = sf::Vector2f(size.x, 0);
 		break;
 
 	case OriginPos::DownLeft:
-		sprite.setOrigin(0, size.y);
+		origin = sf::Vector2f(0, size.y);
 		break;
 
 	case OriginPos::DownRight:
-		sprite.setOrigin(size);
+		origin = sf::Vector2f(size);
 		break;
 
 	case OriginPos::Center:
-		sprite.setOrigin(size.x / 2, size.y / 2);
+		origin = sf::Vector2f(size.x / 2, size.y / 2);
 		break;
 	}
-
-	origin = sprite.getOrigin();
 }
 
-const void GameObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
+const void SpriteObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
 		targetWin->draw(sprite);
 }
 
-void GameObject::update()
+void SpriteObject::update()
 {
 	float elapsedTime = time.getDeltaTime();
 

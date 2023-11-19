@@ -2,10 +2,31 @@
 #include <SFML/Graphics.hpp>
 #include "GameTime.h"
 
+/**
+* \class BaseObject
+* \brief Represents the base from which all types of graphic objects inherit.
+* 
+* This class provides the basic properties such as transformation, 
+* color or activity state, which every object that can be rendered 
+* into a window should have. The class is abstract and therefore 
+* cannot be used directly.
+*/
 class BaseObject
 {
 public:
+	/**
+	* \brief Constructs the object with specified position, rotation, angle, scale, visibility and active state
+	* \param position Initial position of the object (default is (0, 0)).
+	* \param rotationAngle Initial rotation angle in degrees (default is 0.0f)
+	* \param scale Initial scale (default is (1, 1)).
+	* \param isVisible Initial visibility state (default is true).
+	* \param isActive Initial active state (default is true).
+	*/
 	BaseObject(sf::Vector2f position, float rotationAngle, sf::Vector2f scale, bool isVisible, bool isActive);
+
+	/**
+	* \brief Destructor of the BaseObject.
+	*/
 	~BaseObject() {};
 
 	/**
@@ -25,11 +46,26 @@ public:
 	* \brief Retrieves the size of the GameObject.
 	* \return The size of the GameObject as an sf::Vector2f.
 	*/
-	sf::Vector2f getSize();
-
+	const sf::Vector2f getSize() const;
+	
+	/**
+	* \brief Method to update the Object.
+	* Must be initialized in the child class.
+	*/
 	virtual void update() = 0;
+
+	/**
+	* \brief Method to render the Object.
+	* Must be initialized in the child class.
+	* \param targetWin Window on which the object is to be drawn.
+	*/
 	const virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const = 0;
 
+	/**
+	* \brief Sets the origin position of the SpriteObject.
+	* Must be initialized in the child class.
+	* \param pos The origin position to set.
+	*/
 	virtual void setOrigin(OriginPos pos) = 0;
 
 	// Member variables
