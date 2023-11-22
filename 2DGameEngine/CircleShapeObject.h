@@ -45,7 +45,7 @@ public:
 	* \brief Renders the CircleShapeObject.
 	* \param targetWin Shared pointer to render target window.
 	*/
-	const virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
+	virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
 
 	/**
 	* \brief Sets the texture of the CircleShapeObject.

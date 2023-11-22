@@ -62,7 +62,7 @@ public:
 	* \brief Renders the SpriteObject.
 	* \param targetWin Shared pointer to the render target window.
 	*/
-	const virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
+	virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
 
 	/** \brief Updates the SpriteObject. */
 	virtual void update() override;

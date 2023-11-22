@@ -53,7 +53,7 @@ void CircleShapeObject::update()
 	behaviour();
 }
 
-const void CircleShapeObject::render (std::shared_ptr<sf::RenderWindow> targetWin) const
+void CircleShapeObject::render (std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
 		targetWin->draw(shape);
@@ -108,6 +108,7 @@ void CircleShapeObject::defineShape(float radius, unsigned int numberOfPoints)
 	shape.setRadius(radius);
 	shape.setPointCount(numberOfPoints);
 	size = shape.getLocalBounds().getSize();
+	globalBounds = shape.getGlobalBounds();
 }
 
 void CircleShapeObject::defineShape(float radius, Shapes shape)
@@ -134,4 +135,5 @@ void CircleShapeObject::defineShape(float radius, Shapes shape)
 	}
 
 	size = this->shape.getLocalBounds().getSize();
+	globalBounds = this->shape.getGlobalBounds();
 }

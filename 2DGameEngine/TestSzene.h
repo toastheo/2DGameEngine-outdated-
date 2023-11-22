@@ -4,6 +4,7 @@
 #include "TextObject.h"
 #include "GameTime.h"
 #include "CircleShapeObject.h"
+#include "PhysicWorld.h"
 
 class TestSzene : public Scene
 {
@@ -14,7 +15,10 @@ class TestSzene : public Scene
 
 	// test gameobject
 	std::shared_ptr<sf::Texture> blue_chicken_texture;
-	BlueChicken blue_chicken;
+	std::shared_ptr<BlueChicken> blue_chicken;
+
+	// test physics
+	PhysicWorld pWorld;
 
 	// test textobject
 	std::shared_ptr<sf::Font> TimeDisplay_font;

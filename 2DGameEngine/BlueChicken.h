@@ -5,11 +5,12 @@
 class BlueChicken : public SpriteObject
 {
 private:
-	// virtual void start() override;
-	virtual void behaviour() override;
-	GameTime time;
+	//virtual void start() override;
+	//virtual void behaviour() override;
+
+	/*GameTime time;
 	float elapsedTime = 0;
 	bool faceRight = true;
-	float speed = 300;
+	float speed = 300;*/
 };
 

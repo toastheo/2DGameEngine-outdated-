@@ -31,6 +31,12 @@
     <Filter Include="Quelldateien\System">
       <UniqueIdentifier>{74aa02cd-8da1-4bff-a31f-9fac56ac511e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Physics">
+      <UniqueIdentifier>{a673fd4d-da64-49b6-a21f-d01cbc1018ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Physics">
+      <UniqueIdentifier>{cc65cc96-4b0f-4325-8ce6-ab228dd1e860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,6 +69,9 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Quelldateien\System</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicWorld.cpp">
+      <Filter>Quelldateien\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpriteObject.h">
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="GameEngine.h">
       <Filter>Headerdateien\System</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicWorld.h">
+      <Filter>Headerdateien\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

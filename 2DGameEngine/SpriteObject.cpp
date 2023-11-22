@@ -17,7 +17,9 @@ void SpriteObject::setTexture(std::shared_ptr<sf::Texture> texture, bool smoothi
 		texture->setRepeated(repeat);
 
 	sprite.setTexture(*texture);
+
 	size = sprite.getLocalBounds().getSize();
+	globalBounds = sprite.getGlobalBounds();
 }
 
 void SpriteObject::setTextureRect(sf::IntRect textureRect)
@@ -63,7 +65,7 @@ void SpriteObject::setOrigin(OriginPos pos)
 	}
 }
 
-const void SpriteObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
+void SpriteObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
 		targetWin->draw(sprite);

@@ -46,7 +46,13 @@ public:
 	* \brief Retrieves the size of the GameObject.
 	* \return The size of the GameObject as an sf::Vector2f.
 	*/
-	const sf::Vector2f getSize() const;
+	sf::Vector2f getSize() const;
+
+	/**
+	* \brief Retrieves the global bounds of the GameObject.
+	* \return The global bounds of the GameObject as an sf::FloatRect.
+	*/
+	sf::FloatRect getGlobalBounds() const;
 	
 	/**
 	* \brief Method to update the Object.
@@ -59,7 +65,7 @@ public:
 	* Must be initialized in the child class.
 	* \param targetWin Window on which the object is to be drawn.
 	*/
-	const virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const = 0;
+	virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const = 0;
 
 	/**
 	* \brief Sets the origin position of the SpriteObject.
@@ -83,6 +89,7 @@ public:
 
 protected:
 	sf::Vector2f size;						///< Size of the Object.
+	sf::FloatRect globalBounds;				///< Global bounds of the Object
 
 	GameTime time;							///< Tracks time to calculate DeltaTime.
 	bool loopStarted = false;				///< Tracks if the Object loop has started.

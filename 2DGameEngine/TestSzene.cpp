@@ -3,6 +3,7 @@
 void TestSzene::init()
 {
 	// test gameObject
+	blue_chicken = std::make_shared<BlueChicken>();
 	blue_chicken_texture = std::make_shared<sf::Texture>();
 
 	if (!blue_chicken_texture->loadFromFile("BlueChickenIdle-Sheet.png"))
@@ -10,10 +11,13 @@ void TestSzene::init()
 		std::cout << "Error trying to load Blue Chicken Texture." << std::endl;
 	}
 
-	blue_chicken.setTexture(blue_chicken_texture);
-	blue_chicken.scale = sf::Vector2f(10.f, 10.f);
-	blue_chicken.setTextureRect(sf::IntRect(0, 0, blue_chicken.getSize().x / 5.f, blue_chicken.getSize().y));
-	blue_chicken.position.y += 50.f;
+	blue_chicken->setTexture(blue_chicken_texture);
+	blue_chicken->scale = sf::Vector2f(10.f, 10.f);
+	blue_chicken->setTextureRect(sf::IntRect(0, 0, blue_chicken->getSize().x / 5.f, blue_chicken->getSize().y));
+	blue_chicken->position.y += 50.f;
+	blue_chicken->position.x += 200.f;
+
+	pWorld.addObject(blue_chicken);
 
 	// test textobject
 	TimeDisplay_font = std::make_shared<sf::Font>();
@@ -66,18 +70,19 @@ void TestSzene::update()
 {
 	TimeDisplay.string = L"Time elapsed: " + TimeDisplay.convertToWString(timer.getTotalLiveTime().asSeconds());
 
-	blue_chicken.update();
+	blue_chicken->update();
 	TimeDisplay.update();
 	circle.update();
 	triangle.update();
 	square.update();
 	octagon.update();
 	sides12.update();
+	pWorld.update();
 }
 
 void TestSzene::render() const
 {
-	blue_chicken.render(targetWin);
+	blue_chicken->render(targetWin);
 	TimeDisplay.render(targetWin);
 	circle.render(targetWin);
 	triangle.render(targetWin);

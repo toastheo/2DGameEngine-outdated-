@@ -29,6 +29,9 @@ void TextObject::update()
 	text.setScale(scale);
 	text.setFillColor(color);
 	text.setOrigin(origin);
+	
+	size = text.getLocalBounds().getSize();
+	globalBounds = text.getGlobalBounds();
 
 	if (motionVector != sf::Vector2f(0.f, 0.f))
 	{
@@ -51,7 +54,7 @@ void TextObject::update()
 	behaviour();
 }
 
-const void TextObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
+void TextObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
 		targetWin->draw(text);
@@ -87,7 +90,6 @@ void TextObject::setFont(std::shared_ptr<sf::Font> font)
 {
 	this->font = font;
 	text.setFont(*font);
-	size = text.getLocalBounds().getSize();
 }
 
 std::wstring TextObject::convertToWString(const std::string& string)
