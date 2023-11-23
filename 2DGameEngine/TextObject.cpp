@@ -24,11 +24,14 @@ void TextObject::update()
 	text.setString(string);
 	text.setCharacterSize(characterSizeInPixel);
 	text.setStyle(style);
+
 	text.setPosition(position);
+	lastPos = position;
+
 	text.setRotation(rotationAngle);
 	text.setScale(scale);
+	size = text.getGlobalBounds().getSize();
 	text.setFillColor(color);
-	text.setOrigin(origin);
 	
 	size = text.getLocalBounds().getSize();
 	globalBounds = text.getGlobalBounds();
@@ -58,32 +61,6 @@ void TextObject::render(std::shared_ptr<sf::RenderWindow> targetWin) const
 {
 	if (isVisible && isActive)
 		targetWin->draw(text);
-}
-
-void TextObject::setOrigin(OriginPos pos)
-{
-	switch (pos)
-	{
-	case OriginPos::UpLeft:
-		origin = sf::Vector2f(0, 0);
-		break;
-
-	case OriginPos::UpRight:
-		origin = sf::Vector2f(size.x, 0);
-		break;
-
-	case OriginPos::DownLeft:
-		origin = sf::Vector2f(0, size.y);
-		break;
-
-	case OriginPos::DownRight:
-		origin = sf::Vector2f(size);
-		break;
-
-	case OriginPos::Center:
-		origin = sf::Vector2f(size.x / 2, size.y / 2);
-		break;
-	}
 }
 
 void TextObject::setFont(std::shared_ptr<sf::Font> font)

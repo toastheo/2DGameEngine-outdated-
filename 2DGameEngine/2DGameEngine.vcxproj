@@ -144,6 +144,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="CircleShapeObject.cpp" />
+    <ClCompile Include="TestPhyiscs.cpp" />
     <ClCompile Include="TestSzene.cpp" />
     <ClCompile Include="TextObject.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="CircleShapeObject.h" />
+    <ClInclude Include="TestPhyiscs.h" />
     <ClInclude Include="TestSzene.h" />
     <ClInclude Include="TextObject.h" />
   </ItemGroup>

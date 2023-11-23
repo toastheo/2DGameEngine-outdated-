@@ -6,48 +6,42 @@ PhysicWorld::PhysicWorld(sf::Vector2f gravity)
 void PhysicWorld::addObject(std::shared_ptr<BaseObject> objectToAdd, bool makeDynamic)
 {
 	// check if object already exists in the world
-	auto it = std::find_if_not(renderObjects.begin(), renderObjects.end(),
-		[&objectToAdd](const std::shared_ptr<BaseObject>& obj) {
-			return obj.get() == objectToAdd.get();
-		});
-
-	// if not
-	if (it == renderObjects.end())
+	for (int i = 0; i < renderObjects.size(); i++)
 	{
-		// add object
-		renderObjects.push_back(objectToAdd);
+		if (objectToAdd == renderObjects[i])
+			return;
+	}
+	
+	// add object
+	renderObjects.push_back(objectToAdd);
 
-		// change origin to center (for correct transformations) without changing the current position
-		//setOriginToCenter(objectToAdd);
+	// add to the world
+	objectToAdd->update();
 
-		// add to the world
-		if (!makeDynamic)
-		{
-			// create a static body
-			createStaticBody(objectToAdd, 0, 0);
-		}
-		else
-		{
-			// create a dynamic body
-			createDynamicBody(objectToAdd, 1.f, 0.3);
-		}
+	if (!makeDynamic)
+	{
+		// create a static body
+		createStaticBody(objectToAdd, 0, 0);
+	}
+	else
+	{
+		// create a dynamic body
+		createDynamicBody(objectToAdd, 1.f, 0.3f);
 	}
 }
 
 void PhysicWorld::removeObject(const std::shared_ptr<BaseObject> objectToRemove)
 {
 	// find the object to remove
-	auto it = std::find_if(renderObjects.begin(), renderObjects.end(),
-		[&objectToRemove](const std::shared_ptr<BaseObject>& obj) {
-			return obj.get() == objectToRemove.get();
-		});
-
-	// remove object
-	if (it != renderObjects.end())
+	for (int i = 0; i < renderObjects.size(); i++)
 	{
-		int position = std::distance(renderObjects.begin(), it);
-		renderObjects.erase(it);
-		b2Bodys.erase(b2Bodys.begin() + position);
+		if (objectToRemove == renderObjects[i])
+		{
+			// remove object
+			int position = std::distance(renderObjects.begin(), renderObjects.begin() + i);
+			renderObjects.erase(renderObjects.begin() + i);
+			b2Bodys.erase(b2Bodys.begin() + position);
+		}
 	}
 }
 
@@ -64,9 +58,14 @@ void PhysicWorld::update()
 		return;
 	}
 
-	world.Step(timeStep, velocityIterations, positionIterations);
+	accumulatedTime += time.reset().asSeconds();
+	while (accumulatedTime >= timeStep)
+	{
+		world.Step(timeStep, velocityIterations, positionIterations);
+		accumulatedTime -= timeStep;
+	}
 
-	for (int i = 0; i < renderObjects.size(); i++)
+	for (unsigned int i = 0; i < renderObjects.size(); i++)
 	{
 		// get new position and angle from Block2D
 		b2Vec2 position = b2Bodys[i]->GetPosition();
@@ -76,21 +75,6 @@ void PhysicWorld::update()
 		renderObjects[i]->position = sf::Vector2f(position.x, position.y);
 		renderObjects[i]->rotationAngle = angle * 180.f / b2_pi;
 	}
-}
-
-void PhysicWorld::setOriginToCenter(std::shared_ptr<BaseObject> object)
-{
-	sf::FloatRect bounds = object->getGlobalBounds();
-	sf::Vector2f center(bounds.left + bounds.width / 2.0f, bounds.top + bounds.height / 2.0f);
-
-	// calculate difference between current origin and middle point
-	sf::Vector2f originDiff = center - object->origin;
-
-	// set new origin
-	object->origin = center;
-
-	// maintain the original position
-	object->position = object->position + originDiff;
 }
 
 void PhysicWorld::createStaticBody(std::shared_ptr<BaseObject> objectToAdd, float density, float friction)
@@ -116,7 +100,7 @@ void PhysicWorld::createDynamicBody(std::shared_ptr<BaseObject> objectToAdd, flo
 	b2Body* dynamicBody = world.CreateBody(&dynamicBodyDef);
 	b2Bodys.push_back(dynamicBody);
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(objectToAdd->getSize().x / 2, objectToAdd->getSize().y / 2);
+	dynamicBox.SetAsBox(objectToAdd->getSize().x / 2.f, objectToAdd->getSize().y / 2.f);
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = density;

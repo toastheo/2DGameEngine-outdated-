@@ -26,11 +26,14 @@ void CircleShapeObject::update()
 
 	shape.setOutlineThickness(outlineThickness);
 	shape.setOutlineColor(outlineColor);
+
 	shape.setPosition(position);
+	lastPos = position;
+
 	shape.setRotation(rotationAngle);
 	shape.setScale(scale);
+	size = shape.getGlobalBounds().getSize();
 	shape.setFillColor(color);
-	shape.setOrigin(origin);
 
 	if (motionVector != sf::Vector2f(0.f, 0.f))
 	{
@@ -75,32 +78,6 @@ void CircleShapeObject::setTexture(std::shared_ptr<sf::Texture> texture, bool sm
 void CircleShapeObject::setTextureRect(sf::IntRect textureRect)
 {
 	shape.setTextureRect(textureRect);
-}
-
-void CircleShapeObject::setOrigin(OriginPos pos)
-{
-	switch (pos)
-	{
-	case OriginPos::UpLeft:
-		origin = sf::Vector2f(0, 0);
-		break;
-
-	case OriginPos::UpRight:
-		origin = sf::Vector2f(size.x, 0);
-		break;
-
-	case OriginPos::DownLeft:
-		origin = sf::Vector2f(0, size.y);
-		break;
-
-	case OriginPos::DownRight:
-		origin = sf::Vector2f(size);
-		break;
-
-	case OriginPos::Center:
-		origin = sf::Vector2f(size.x / 2, size.y / 2);
-		break;
-	}
 }
 
 void CircleShapeObject::defineShape(float radius, unsigned int numberOfPoints)

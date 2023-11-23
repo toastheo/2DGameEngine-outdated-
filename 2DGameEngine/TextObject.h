@@ -35,12 +35,6 @@ public:
 	virtual void render(std::shared_ptr<sf::RenderWindow> targetWin) const override;
 
 	/**
-	* \brief Sets the origin position of the SpriteObject.
-	* \param pos The origin position to set.
-	*/
-	virtual void setOrigin(OriginPos pos) override;
-
-	/**
 	* \brief Sets the font for the text.
 	* \param font Shared pointer to the sf::Font object.
 	*/

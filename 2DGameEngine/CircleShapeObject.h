@@ -66,12 +66,6 @@ public:
 	void setTextureRect(sf::IntRect textureRect);
 
 	/**
-	* \brief Sets the origin position of the CircleShapeObject.
-	* \param pos The origin position to set.
-	*/
-	virtual void setOrigin(OriginPos pos) override;
-
-	/**
 	* \brief Defines the shape based on radius and predefined shape type.
 	* \param radius Radius of the shape.
 	* \param numberOfPoints Number of the points defining the shape.

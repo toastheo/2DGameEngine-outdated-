@@ -9,8 +9,6 @@ GameEngine::GameEngine(bool verticalSync)
 
 	window->create(sf::VideoMode(1600, 900, desktop.bitsPerPixel), "2D Game Engine", sf::Style::Default, settings);
 	window->setVerticalSyncEnabled(verticalSync);
-
-	thread = std::thread(&GameEngine::renderThread, this);
 }
 
 GameEngine::~GameEngine()
@@ -28,6 +26,12 @@ void GameEngine::update()
 		std::cout << "Scene Pointer is empty. Make sure to load a scene before starting the Game Engine.\nClosing window." << std::endl;
 		window->close();
 		return;
+	}
+
+	if (!threadStarted)
+	{
+		thread = std::thread(&GameEngine::renderThread, this);
+		threadStarted = true;
 	}
 
 	window->setActive(false);

@@ -17,6 +17,7 @@ void TestSzene::init()
 	blue_chicken->position.y += 50.f;
 	blue_chicken->position.x += 200.f;
 
+	pWorld.setGravity(sf::Vector2f(0, 200));
 	pWorld.addObject(blue_chicken);
 
 	// test textobject
@@ -68,7 +69,8 @@ void TestSzene::init()
 
 void TestSzene::update()
 {
-	TimeDisplay.string = L"Time elapsed: " + TimeDisplay.convertToWString(timer.getTotalLiveTime().asSeconds());
+	//TimeDisplay.string = L"Time elapsed: " + TimeDisplay.convertToWString(timer.getTotalLiveTime().asSeconds());
+	TimeDisplay.string = L"Position: x:" + TimeDisplay.convertToWString(blue_chicken->position.x) + L" y:" + TimeDisplay.convertToWString(blue_chicken->position.y);
 
 	blue_chicken->update();
 	TimeDisplay.update();

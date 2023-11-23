@@ -19,6 +19,8 @@ public:
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::thread thread;
+	bool threadStarted = false;
+
 	std::atomic<bool> running = true;
 	bool verticalSync;
 	int antialiasingLevel = 8;

@@ -72,6 +72,9 @@
     <ClCompile Include="PhysicWorld.cpp">
       <Filter>Quelldateien\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="TestPhyiscs.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpriteObject.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="PhysicWorld.h">
       <Filter>Headerdateien\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPhyiscs.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

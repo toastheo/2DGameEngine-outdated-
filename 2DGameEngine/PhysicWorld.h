@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseObject.h"
 #include "box2d/box2d.h"
+#include "GameTime.h"
 #include <iostream>
 
 class PhysicWorld
@@ -23,10 +24,12 @@ private:
 	std::vector<b2Body*> b2Bodys;
 
 	const float timeStep = 1.f / 60.f;
+	float accumulatedTime = 0;
+	GameTime time;
+
 	const int32 velocityIterations = 6;
 	const int32 positionIterations = 2;
 
-	void setOriginToCenter(std::shared_ptr<BaseObject> object);		// DOES NOT WORK CORRECTLY FIX THIS!
 	void createStaticBody(std::shared_ptr<BaseObject> objectToAdd, float density, float friction);
 	void createDynamicBody(std::shared_ptr<BaseObject> objectToAdd, float density, float friction);
 };

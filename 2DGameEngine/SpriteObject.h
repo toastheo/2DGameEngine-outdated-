@@ -53,12 +53,6 @@ public:
 	void flipY();
 
 	/**
-	* \brief Sets the origin position of the SpriteObject.
-	* \param pos The origin position to set.
-	*/
-	virtual void setOrigin(OriginPos pos) override;
-
-	/**
 	* \brief Renders the SpriteObject.
 	* \param targetWin Shared pointer to the render target window.
 	*/
